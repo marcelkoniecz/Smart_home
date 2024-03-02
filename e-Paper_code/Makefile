@@ -68,7 +68,7 @@ RPI:RPI_DEV RPI_epd
 
 TARGET = epd
 CC = gcc
-CPP = g++
+CPP = g++ -std=c++17
 MSG = -g -O -ffunction-sections -fdata-sections -Wall
 CFLAGS += $(MSG) -D $(EPD)
 

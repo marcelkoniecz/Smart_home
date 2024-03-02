@@ -5,9 +5,12 @@
 #include "headers.h"
 
 int arg(){
-    Interface()
-    // Clock aa(100, 200, 10,20);
-    // std::cout<<"TAk udalo sie"<<std::endl;
+    
+    std::unique_ptr<PapClock> clk(new PapClock(100,200,10,20));
+   
+    Interface inter(std::move(clk));
+    inter.initDisplay(DIS_7in5_V2);
+    inter.interfaceInit();
 
     // printf("EPD_7IN5_V2_test Demo\r\n");
     // if(DEV_Module_Init()!=0){
@@ -45,6 +48,8 @@ int arg(){
     // printf("EPD_Display\r\n");
     // EPD_7IN5_V2_Display(BlackImage);
     // DEV_Delay_ms(2000);
-    aa.print_clock();
+    // aa.print_clock();
+    // while(1){}
     return 0;
+    // std::cout<<"aa 2"<<std::endl;
 }
