@@ -8,7 +8,6 @@ extern "C" {
     #include "DEV_Config.h"
     #include "GUI_Paint.h"
     #include "GUI_BMPfile.h"
-    #include "ImageData.h"
     #include "Debug.h"
     #include "EPD_7in5_V2_old.h"
     #include "EPD_7in5_V2.h"

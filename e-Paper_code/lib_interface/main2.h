@@ -5,7 +5,7 @@
 #include "headers.h"
 
 int arg(){
-    
+
     std::unique_ptr<PapClock> clk(new PapClock(100,200,10,20));
    
     Interface inter(std::move(clk));
@@ -22,7 +22,7 @@ int arg(){
     // struct timespec start={0,0}, finish={0,0}; 
     // clock_gettime(CLOCK_REALTIME,&start);
     // EPD_7IN5_V2_Clear();
-    // clock_gettime(CLOCK_REALTIME,&finish);
+    // clock_gettime(CLOCK_REALTIME,&finish); 
     // printf("%ld S\r\n",finish.tv_sec-start.tv_sec);
     // DEV_Delay_ms(500);
 

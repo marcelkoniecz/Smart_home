@@ -2,9 +2,8 @@ DIR_Config	 = ./lib/Config
 DIR_EPD		 = ./lib/e-Paper
 DIR_FONTS	 = ./lib/Fonts
 DIR_GUI		 = ./lib/GUI
-DIR_Examples = ./examples
+DIR_Examples = ./lib_interface
 DIR_BIN		 = ./bin
-DIR_USRLIB = ./lib_interface
 
 OBJ_C_EPD = ${DIR_EPD}/EPD_7in5_V2.c
 OBJ_C_Examples = ${DIR_Examples}/EPD_7in5_V2_test.c
@@ -14,19 +13,7 @@ OBJ_C_EPD = ${DIR_EPD}/EPD_7in5_V2_old.c
 OBJ_C_Examples = ${DIR_Examples}/EPD_7in5_V2_test_old.c
 
 EPD = NULL
-# ifeq ($(EPD), epd1in64g)
-# 	OBJ_C_EPD = ${DIR_EPD}/EPD_1in64g.c
-# 	OBJ_C_Examples = ${DIR_Examples}/EPD_1in64g_test.c
-# else ifeq ($(EPD), epd7in5V2)
-# 	OBJ_C_EPD = ${DIR_EPD}/EPD_7in5_V2.c
-# 	OBJ_C_Examples = ${DIR_Examples}/EPD_7in5_V2_test.c
-# else ifeq ($(EPD), epd7in5V2_old)
-# 	OBJ_C_EPD = ${DIR_EPD}/EPD_7in5_V2_old.c
-# 	OBJ_C_Examples = ${DIR_Examples}/EPD_7in5_V2_test_old.c
-# else 
-#     OBJ_C_EPD = NULL
-#     OBJ_C_Examples = NULL
-# endif
+
 OBJ_CPP = $(wildcard ${DIR_USRLIB}/*.cpp)
 OBJ_C = $(wildcard ${OBJ_C_EPD} ${DIR_GUI}/*.c ${OBJ_C_Examples} ${DIR_Examples}/main.c ${DIR_Examples}/ImageData2.c ${DIR_Examples}/ImageData.c ${DIR_FONTS}/*.c )
 OBJ_O = $(patsubst %.c,${DIR_BIN}/%.o,$(notdir ${OBJ_C}))
@@ -37,9 +24,6 @@ RPI_DEV_C = $(wildcard $(DIR_BIN)/dev_hardware_SPI.o $(DIR_BIN)/RPI_gpiod.o $(DI
 DEBUG = -D DEBUG
 
 USELIB_RPI = USE_BCM2835_LIB
-# USELIB_RPI = USE_WIRINGPI_LIB
-# USELIB_RPI = USE_LGPIO_LIB
-# USELIB_RPI = USE_DEV_LIB
 
 LIB_RPI=-Wl,--gc-sections
 ifeq ($(USELIB_RPI), USE_BCM2835_LIB)
@@ -54,7 +38,6 @@ endif
 DEBUG_RPI = -D $(USELIB_RPI) -D RPI
 
 USELIB_JETSONI = USE_DEV_LIB
-# USELIB_JETSONI = USE_HARDWARE_LIB
 ifeq ($(USELIB_JETSONI), USE_DEV_LIB)
 	LIB_JETSONI = -lm 
 else ifeq ($(USELIB_JETSONI), USE_HARDWARE_LIB)
