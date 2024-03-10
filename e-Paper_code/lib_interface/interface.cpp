@@ -40,12 +40,19 @@ int Interface::initDisplay(e_PaperDisplay display_type) // Init epaper display
         }
         _clock->printClock();
         EPD_7IN5_V2_Display(_blackImage);
+        EPD_7IN5_V2_Init_Partial();
+        Paint_NewImage(_blackImage,210, 250,0,WHITE);
+        Paint_SelectImage(_blackImage);
+        Paint_Clear(BLACK);
         // Paint_Clear(WHITE);
         while(1){
         // EPD_7IN5_V2_Clear();
-        Paint_Clear(WHITE);
+        EPD_7IN5_V2_Init_Partial();
+        Paint_ClearWindows(0,0,210,250,BLACK);
         _clock->updateClock();
-        EPD_7IN5_V2_Display_Partial(_blackImage,0,0,EPD_7IN5_V2_WIDTH, EPD_7IN5_V2_HEIGHT);
+        EPD_7IN5_V2_Display_Partial(_blackImage,0,0,210+0,250+0);
+        EPD_7IN5_V2_Sleep();
+        DEV_Delay_ms(30000);
 
         // EPD_7IN5_V2_Display(_blackImage);
         }

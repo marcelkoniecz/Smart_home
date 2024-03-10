@@ -3,22 +3,49 @@
 #define BASE_H
 #include<iostream>
 
-class BaseCord{
-    int cordx;
-    int cordy;
-    int const maxResx;
-    int const maxResy;
-    // int const maxRes[2];  //[0] - max x res, [1]- max y res
 
-public:
-    BaseCord():maxResx(1000), maxResy(1000) { std::cout<<"Used Base constructor"<<std::endl; cordx = 0; cordy = 0;}
-    BaseCord(int n_cordx, int n_cordy, int n_maxx, int n_maxy) : cordx(n_cordx), cordy(n_cordy), maxResx(n_maxx), maxResy(n_maxy) {}
-    BaseCord(int n_maxx, int n_maxy): maxResx(n_maxx), maxResy(n_maxy) {cordx = 0; cordy = 0;}
-    
-    void setCord(int cordx, int cordy);
-    int getCord();
-    int getMaxRes();
-    // void setMaxRes(int maxx, int maxy);
+class Cord{
+        
+        int const _x;
+        int const _y;
+        
+    public:
+        Cord():_x(0),_y(0){}
+        Cord(int x,int y):_x(x),_y(y){}
+            
+        int operator[](int index){
+            switch(index){
+                case 0:
+                    return _x;
+                    break;
+                case 1:
+                    return _y;
+                    break;
+                default:
+                    return _x;  //change this
+                    break;
+                }
+            }
+};
+
+
+class BaseCord{
+
+    protected:
+        Cord  _cord;
+        Cord  _resCord;
+
+    public:
+        BaseCord(): _cord(Cord(0,0)), _resCord(Cord(1000,1000)){}
+        BaseCord(int x, int y, int y_max, int x_max):_cord(Cord(x,y)),_resCord(Cord(x_max,y_max)){}
+        BaseCord(Cord place, Cord res): _cord(place),_resCord(res){}
+        void setCord(int cordx, int cordy);
+        
+        Cord getCord(){return _cord;}
+        Cord getRes(){return _resCord;}
+
+        int getCord(int z){return _cord[z];}
+        int getRes(int z){return _resCord[z];}
 };
 
 #endif

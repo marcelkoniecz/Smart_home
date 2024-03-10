@@ -32,9 +32,9 @@ class PapClock : public BaseCord{
         PapClock(int n_cordx, int n_cordy, int n_maxx, int n_maxy) : BaseCord(n_cordx, n_cordy, n_maxx, n_maxy){
             curr_time = time(NULL);
         }
-        PapClock(int n_maxx, int n_maxy):BaseCord(n_maxx,n_maxy){
-            curr_time = time(NULL);
-        }
+        // PapClock(int n_maxx, int n_maxy):BaseCord(n_maxx,n_maxy){
+        //     curr_time = time(NULL);
+        // }
         void printClock();
         void updateClock();
 };

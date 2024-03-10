@@ -1,10 +1,11 @@
 
 #ifndef INTERFACE_H
 #define INTERFACE_H
-
-#include "clock.h"
-#include "headers.h"
 #include <memory>
+
+#include "headers.h"
+#include "clock.h"
+#include "date.h"
 
 //In the future could be added other e-paper displays
 enum e_PaperDisplay{
@@ -15,6 +16,7 @@ class Interface{
 
     UBYTE *_blackImage;
     std::unique_ptr<PapClock> _clock;
+    std::unique_ptr<Date> _date;
     bool _displayInit = false; 
     //Data
     //Graphs - temp inside, tmp outside, moisture  in pot 

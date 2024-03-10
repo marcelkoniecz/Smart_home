@@ -9,6 +9,7 @@ extern "C" {
 }
 #endif
 #include "clock.h"
+#include "date.h"
 #include "interface.h"
 #include "headers.h"
 
@@ -26,8 +27,12 @@ int main(void)
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);
 
-    std::unique_ptr<PapClock> clk(new PapClock(100,200,10,20));
-   
+    std::unique_ptr<PapClock> clk(new PapClock(0,0,210,250));           //only clock
+    std::unique_ptr<Date> date(new Date(30,240,210,90));                //date
+    // std::unique_ptr<TemperatureWidget> tmpInside(new TemperatureWidget(400,10,380,230))//temperature inside widget
+    // std::unique_ptr<TemperatureWidget> tmpInside(new TemperatureWidget(400,10,380,230))//temperature inside widget
+
+    
     Interface inter(std::move(clk));
     inter.initDisplay(DIS_7in5_V2);
    
@@ -67,7 +72,7 @@ int main(void)
     // Paint_DrawString_EN(240,90,"24 %",&Font24 ,WHITE ,BLACK);
     Paint_DrawString_EN(210,420,"BAT:87%",&Font24 ,WHITE ,BLACK);
 
-    Paint_DrawString_EN(30,210,"10:24:35",&Font24 ,WHITE ,BLACK); 
+    // Paint_DrawString_EN(30,210,"10:24:35",&Font24 ,WHITE ,BLACK); 
     Paint_DrawString_EN(30,240,"Wednesday",&Font24 ,WHITE ,BLACK);
     Paint_DrawString_EN(30,270,"04 March",&Font24 ,WHITE ,BLACK); 
     // Paint_DrawString_EN(210,270,"Pot 1:24%",&Font24 ,WHITE ,BLACK);
