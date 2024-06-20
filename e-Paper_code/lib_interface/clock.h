@@ -27,15 +27,27 @@ static constexpr int minYTab[]={
 class PapClock : public BaseCord{
 
         time_t curr_time; 
+        int _last_hour;
+        bool _new_day;
+
     public:
         PapClock(){}
         PapClock(int n_cordx, int n_cordy, int n_maxx, int n_maxy) : BaseCord(n_cordx, n_cordy, n_maxx, n_maxy){
             curr_time = time(NULL);
+            tm *tm_local = localtime(&curr_time);
+            _last_hour = tm_local->tm_hour;
         }
         // PapClock(int n_maxx, int n_maxy):BaseCord(n_maxx,n_maxy){
         //     curr_time = time(NULL);
         // }
         void printClock();
         void updateClock();
+        bool newDay(){
+            if(_new_day){
+                _new_day=false;
+                return true;
+            }
+            else
+            return _new_day;}
 };
 #endif

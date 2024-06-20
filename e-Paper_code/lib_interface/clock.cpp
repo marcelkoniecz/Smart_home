@@ -29,6 +29,12 @@ void PapClock::updateClock(){
     Paint_DrawLine(105+ _cord[0],105+ _cord[1],minXTab[tm_local->tm_min]+ _cord[0],minYTab[tm_local->tm_min]+ _cord[1],WHITE,DOT_PIXEL_2X2, LINE_STYLE_SOLID);  // longer
     Paint_DrawLine(105+ _cord[0],105+ _cord[1],hrsXTab[(tm_local->tm_hour)%12]+ _cord[0],hrsYTab[(tm_local->tm_hour)%12]+ _cord[1], WHITE,DOT_PIXEL_3X3,LINE_STYLE_SOLID);  // shorter
     Paint_DrawString_EN(60+ _cord[0],210+ _cord[1],str.c_str(),&Font24 ,BLACK ,WHITE); 
+    // checking new day
+    if(_last_hour != tm_local->tm_hour){
+        if(_last_hour== 23)
+            _new_day = true;
+        _last_hour = tm_local->tm_hour;
+    }
 }
 
 // // void update_clock(){
